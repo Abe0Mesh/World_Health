@@ -1,30 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Interactive World Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Crazy Interactive World Globe</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://unpkg.com/topojson@3"></script>
+  <!-- Globe.gl -->
+  <script src="https://unpkg.com/globe.gl"></script>
+
+  <!-- Turf.js (for robust centroids/centers) -->
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
 </head>
 
 <body>
+  <header>
+    <h1>Crazy Interactive World Globe</h1>
+    <p class="subtitle">
+      Click a country → zoom + info + top cities. Click a city → zoom + city label.
+    </p>
+  </header>
 
-<h1>Interactive World Map</h1>
+  <main class="layout">
+    <div id="globe-wrap">
+      <div id="loading" class="loading">
+        Loading countries + World Bank data + cities…
+      </div>
+      <div id="tooltip" class="tooltip"></div>
+      <div id="globe"></div>
+    </div>
 
-<p class="intro">
-Click a country to zoom in. Later we can attach global datasets
-like healthcare, GDP, or population.
-</p>
+    <aside id="panel" class="panel">
+      <div class="panel-inner">
+        <div class="panel-title">Click a country</div>
+        <div class="panel-hint">
+          We’ll color countries by <strong>GDP per capita (current US$)</strong> from the World Bank.
+          Then we’ll show <strong>top 5 cities</strong> (Natural Earth populated places).
+        </div>
+      </div>
+    </aside>
+  </main>
 
-<div class="layout">
-  <div id="map"></div>
-  <div id="info-panel"></div>
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
